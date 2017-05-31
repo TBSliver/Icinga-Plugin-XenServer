@@ -1,0 +1,28 @@
+name: XenServer Check and Metrics
+description: "file:///README.md"
+url: "https://github.com/TBSliver/Icinga-Plugin-XenServer"
+tags: XenServer, Performance Data
+vendor: Linux
+target: Hypervisor
+type: Plugin
+license: lgplv2.1
+releases: 
+  - 
+    name: "1.0.0"
+    description: "Initial Release"
+    files: 
+      - 
+        name: "Icinga-Plugin-XenServer-v1.0.0.tar.gz"
+        url: "https://github.com/TBSliver/Icinga-Plugin-XenServer/archive/v1.0.0.tar.gz"
+        description: "v1.0.0 Tarball"
+        checksum: 265abecf21733f7be6140fff4ab5361d
+      - 
+        name: "XenAPI.py"
+        url: "https://github.com/TBSliver/Icinga-Plugin-XenServer/blob/v1.0.0/XenAPI.py"
+        description: "v1.0.0 XenAPI python class"
+        checksum: d3e7849816c6f34830dc3d276de17f71
+      - 
+        name: "check_xen.py"
+        url: "https://github.com/TBSliver/Icinga-Plugin-XenServer/blob/v1.0.0/check_xen.py"
+        description: "v1.0.0 Xen Monitoring Plugin"
+        checksum: 9ac52c5e7bd3b81abc0fcab677227193
