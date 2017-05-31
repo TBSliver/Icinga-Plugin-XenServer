@@ -103,6 +103,7 @@ try:
     parser.add_option("-I", "--info", default=False, dest="info", help="display XenServer info")
     parser.add_option("-w", "--warning", default="0", dest="warning", help="CPU % utilisation warning level")
     parser.add_option("-c", "--critical", default="0", dest="critical", help="CPU % utilisation critical level")
+    parser.add_option("--insecure", action="store_true", default=False, dest="insecure", help="Check using http instead of https")
 
     (options, args) = parser.parse_args()
 
@@ -114,11 +115,17 @@ try:
     #get a session. set host_is_slave true if we need to redirect to a new master
     host_is_slave=False
     try:
-        session=XenAPI.Session('https://'+options.hostname)
+	if options.insecure:
+            session=XenAPI.Session('http://'+options.hostname)
+        else:
+            session=XenAPI.Session('https://'+options.hostname)
         session.login_with_password(options.username, options.password)
     except XenAPI.Failure, e:
         if e.details[0]=='HOST_IS_SLAVE':
-            session=XenAPI.Session('https://'+e.details[1])
+	    if options.insecure:
+                session=XenAPI.Session('http://'+e.details[1])
+            else:
+                session=XenAPI.Session('https://'+e.details[1])
             session.login_with_password(options.username, options.password)
             host_is_slave=True
         else:
